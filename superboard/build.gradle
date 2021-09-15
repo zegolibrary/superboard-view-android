@@ -2,7 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'com.kezong.fat-aar'
-    id 'maven-publish'
+//    id 'maven-publish'
 }
 
 android {
@@ -37,21 +37,21 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "androidx.core:core-ktx:1.6.0"
     implementation "androidx.appcompat:appcompat:1.3.1"
-    implementation 'com.github.zegolibrary:docs-view-android:0.0.7'//docs_tag
-    implementation 'com.github.zegolibrary:whiteboard-view-android:0.0.4'//whiteboard_tag
+    api 'com.github.zegolibrary:docs-view-android:0.0.7'//docs_tag
+    api 'com.github.zegolibrary:whiteboard-view-android:0.0.4'//whiteboard_tag
     embed project(configuration: 'default', path: ':superboardsdk')
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.github.zegolibrary'
-                artifactId = 'superboard-view-android'
-                version = '0.0.3'
-            }
-        }
-    }
-}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            // Creates a Maven publication called "release".
+//            release(MavenPublication) {
+//                from components.release
+//                groupId = 'com.github.zegolibrary'
+//                artifactId = 'superboard-view-android'
+//                version = '0.0.3'
+//            }
+//        }
+//    }
+//}
