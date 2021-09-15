@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'com.kezong.fat-aar'
+    id 'maven-publish'
 }
 
 android {
@@ -39,4 +40,18 @@ dependencies {
     implementation 'com.github.zegolibrary:docs-view-android:0.0.7'//docs_tag
     implementation 'com.github.zegolibrary:whiteboard-view-android:0.0.4'//whiteboard_tag
     embed project(configuration: 'default', path: ':superboardsdk')
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.zegolibrary'
+                artifactId = 'superboard-view-android'
+                version = '0.0.3'
+            }
+        }
+    }
 }
