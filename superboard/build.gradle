@@ -34,9 +34,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "androidx.core:core-ktx:1.6.0"
-    implementation "androidx.appcompat:appcompat:1.3.1"
+    api "androidx.core:core-ktx:1.6.0"
+    api "androidx.appcompat:appcompat:1.3.1"
     api 'com.github.zegolibrary:docs-view-android:0.0.7'//docs_tag
     api 'com.github.zegolibrary:whiteboard-view-android:0.0.4'//whiteboard_tag
     embed project(configuration: 'default', path: ':superboardsdk')
