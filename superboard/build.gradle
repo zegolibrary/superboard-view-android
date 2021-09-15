@@ -1,0 +1,42 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'com.kezong.fat-aar'
+}
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    task downloadSDK(type:Exec) {
+        workingDir './'
+        commandLine "python", "download_sdk.py", "--sdk_version", "2.0.0.82"// sdk_version_tag
+    }
+
+    preBuild.dependsOn 'downloadSDK'
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.core:core-ktx:1.6.0"
+    implementation "androidx.appcompat:appcompat:1.3.1"
+    implementation 'com.github.zegolibrary:docs-view-android:0.0.7'//docs_tag
+    implementation 'com.github.zegolibrary:whiteboard-view-android:0.0.4'//whiteboard_tag
+    embed project(configuration: 'default', path: ':superboardsdk')
+}
