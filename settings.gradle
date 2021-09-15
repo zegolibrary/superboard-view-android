@@ -1,2 +1,2 @@
-include ':superboard'
+include ':superboard-view-android'
 include ':superboardsdk'
